@@ -68,7 +68,7 @@ const percentages = computed(() =>
   border: none;
   cursor: pointer;
   will-change: filter;
-  transition: filter background 300ms;
+  transition: all 300ms ease;
 }
 
 .poll-option:hover {
