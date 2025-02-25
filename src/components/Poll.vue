@@ -27,8 +27,8 @@
 import { ref, computed } from "vue";
 
 defineProps({
-  question: String,
-  options: Array,
+  question: { type: String, required: true },
+  options: { type: Array, required: true },
 });
 
 const votes = ref(new Array(4).fill(0));
@@ -36,9 +36,14 @@ const totalVotes = ref(0);
 const voted = ref(false);
 
 const vote = (index) => {
-  votes.value[index]++;
-  totalVotes.value++;
-  voted.value = true;
+  if (index < 0 || index >= 4) {
+    console.error("Invalid vote index:", index);
+    return;
+  } else {
+    votes.value[index]++;
+    totalVotes.value++;
+    voted.value = true;
+  }
 };
 
 const percentages = computed(() =>
