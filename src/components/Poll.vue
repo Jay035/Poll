@@ -13,11 +13,13 @@
       </button>
     </div>
 
-    <div v-else class="results">
-      <p v-for="(option, index) in options" :key="index">
-        {{ option }}: {{ percentages[index] }}%
-      </p>
-    </div>
+    <transition name="fade-slide">
+      <div v-if="voted" class="results">
+        <p v-for="(option, index) in options" :key="index">
+          {{ option }}: {{ percentages[index] }}%
+        </p>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -37,7 +39,6 @@ const vote = (index) => {
   votes.value[index]++;
   totalVotes.value++;
   voted.value = true;
-  console.log(votes.value);
 };
 
 const percentages = computed(() =>
@@ -67,13 +68,29 @@ const percentages = computed(() =>
   border: none;
   cursor: pointer;
   will-change: filter;
-  transition: filter 300ms;
+  transition: filter background 300ms;
 }
+
 .poll-option:hover {
   background-color: #0056b3;
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .results {
   margin-top: 20px;
+}
+
+.fade-slide-enter-active {
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-slide-enter-from {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.fade-slide-enter-to {
+  opacity: 1;
+  transform: translateY(0);
 }
 </style>

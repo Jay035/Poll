@@ -1,18 +1,17 @@
 <script setup>
-import Poll from './components/Poll.vue'
+import Poll from "./components/Poll.vue";
 </script>
 
 <template>
   <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
     <a href="https://vuejs.org/" target="_blank">
       <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
     </a>
   </div>
-  <Poll question="What is your favorite programming language?" 
-  :options="['JavaScript', 'Python', 'Vue.js', 'Rust']"  />
+  <Poll
+    question="Which frontend framework do you prefer?"
+    :options="['Vue.js', 'React', 'Angular', 'Svelte']"
+  />
 </template>
 
 <style scoped>
@@ -22,9 +21,7 @@ import Poll from './components/Poll.vue'
   will-change: filter;
   transition: filter 300ms;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
+
 .logo.vue:hover {
   filter: drop-shadow(0 0 2em #42b883aa);
 }
